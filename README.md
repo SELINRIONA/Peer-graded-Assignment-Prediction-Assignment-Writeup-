@@ -2,7 +2,7 @@
 
 ## Data
 
-The training data is vailable here:
+The training data is available here:
 
 https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv
 
@@ -28,11 +28,6 @@ head(training)
 head(testing)
 ```
 
-Cross-validation will be performed by spliting the training dataset into:
-
-1) A training dataset, containing 70% of the observations. The models for prediction will be built using this dataset.
-
-2) A testing dataset, containing 30% of the observations. The accuracy of our prediction models will be evaluated using this dataset.
 
 ```{r cross-validation, warning=FALSE, message=FALSE, echo=TRUE}
 # load packages
@@ -47,8 +42,6 @@ training.set = training[inTrain,]
 # testing dataset
 testing.set = training[-inTrain,]
 ```
-
-Training and testing data consist of 160 variables. The choice of specific predictors is based on removing near zero variance predictors, with the nearZeroVar function, and also variables containing many NAs.
 
 ```{r clean data, warning=FALSE, message=FALSE, echo=TRUE}
 # Remove near zero variance predictors
@@ -122,10 +115,6 @@ pred2 = predict(
 # Get results (Accuracy, etc.)
 confusionMatrix(pred2, testing.set$classe)
 ```
-
-The accuracy of the random forest model is, as expected, much higher than the rpart model, over 0.99!
-
-Random Forest model performed better and constitutes the model of choice for predicting the 20 observations of the original pml-testing.csv dataset.
 
 ```{r pml-testing predictions, warning=FALSE, message=FALSE, echo=TRUE}
 # Get predictions for the 20 observations of the original pml-testing.csv
