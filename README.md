@@ -12,7 +12,7 @@ https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv
 
 # Analysis
 
-Loading data:
+Loading the data:
 
 ```{r load data, warning=FALSE, message=FALSE, echo=TRUE}
 training = read.csv("./pml-training.csv",na.strings=c("NA","#DIV/0!",""))
@@ -74,10 +74,6 @@ testing <- rbind(training.set[2, -58] , testing)
 testing <- testing[-1,]
 ```
 
-We will use two approaches to create a prediction model for the values of classe variable. 
-
-Firstly prediction with trees will be attempted, using the 'rpart' method and the caret package.
-
 ```{r prediction with trees, warning=FALSE, message=FALSE, echo=TRUE}
 # Prediction with Trees
 # Build model
@@ -94,8 +90,6 @@ pred.tree = predict(tree.fit, testing.set[,-ncol(testing.set)])
 # Get results (Accuracy, etc.)
 confusionMatrix(pred.tree, testing.set$classe)
 ```
-
-Secondly a prediction model using random forest method will be created.
 
 ```{r random forest, warning=FALSE, message=FALSE, echo=TRUE}
 # Prediction with Random Forest
